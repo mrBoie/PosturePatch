@@ -11,8 +11,8 @@ namespace PostureRepo
         public int ID { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
+        public Enums.Gender Gender { get; set; }
         public string Description { get; set; }
         public List<WorkoutBO> Workouts { get; set; }
-
     }
 }
