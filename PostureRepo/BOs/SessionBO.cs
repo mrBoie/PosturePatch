@@ -8,9 +8,9 @@ namespace PostureRepo
 {
     class SessionBO
     {
+        public int ID { get; set; }
         public DateTime SessionDate { get; set; }
         public int SessionLength { get; set; }
         public string Notes { get; set; }
-
     }
 }
