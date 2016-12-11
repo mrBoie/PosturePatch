@@ -65,17 +65,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BOs and Enums\BOs\ClientBO.cs" />
-    <Compile Include="BOs and Enums\BOs\ExerciseBO.cs" />
-    <Compile Include="BOs and Enums\Enums\Enums.cs" />
+    <Compile Include="Repository and BO\Client\ClientBO.cs" />
+    <Compile Include="Repository and BO\Exercise\ExerciseBO.cs" />
+    <Compile Include="Enums\Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BOs and Enums\BOs\SessionBO.cs" />
-    <Compile Include="BOs and Enums\BOs\WorkoutBO.cs" />
-    <Compile Include="Repositories\Interface\IClientRepository.cs" />
-    <Compile Include="Repositories\Interface\IExerciseRepository.cs" />
-    <Compile Include="Repositories\Interface\ISessionRepository.cs" />
-    <Compile Include="Repositories\Interface\IWorkoutRepository.cs" />
-    <Compile Include="Repositories\Models\ClientRepository.cs" />
+    <Compile Include="Repository and BO\Session\SessionBO.cs" />
+    <Compile Include="Repository and BO\Workout\WorkoutBO.cs" />
+    <Compile Include="Repository and BO\Client\IClientRepository.cs" />
+    <Compile Include="Repository and BO\Exercise\IExerciseRepository.cs" />
+    <Compile Include="Repository and BO\Session\ISessionRepository.cs" />
+    <Compile Include="Repository and BO\Workout\IWorkoutRepository.cs" />
+    <Compile Include="Repository and BO\Client\ClientRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
