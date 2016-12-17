@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DatabaseContext.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DatabaseContextStoreContainer">
+    <EntitySet Name="ExerciseTemplateSet" EntityType="DatabaseContext.Store.ExerciseTemplateSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ExerciseSet" EntityType="DatabaseContext.Store.ExerciseSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ExerciseExerciseTemplate" Association="DatabaseContext.Store.ExerciseExerciseTemplate">
+      <End Role="Exercise" EntitySet="ExerciseSet" />
+      <End Role="ExerciseTemplate" EntitySet="ExerciseTemplateSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ExerciseTemplateSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DefaultSets" Type="smallint" Nullable="false" />
+    <Property Name="DefaultReps" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ExerciseSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Sets" Type="smallint" Nullable="false" />
+    <Property Name="Reps" Type="smallint" Nullable="false" />
+    <Property Name="ExerciseTemplateId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="ExerciseExerciseTemplate">
+    <End Role="Exercise" Type="DatabaseContext.Store.ExerciseSet" Multiplicity="*" />
+    <End Role="ExerciseTemplate" Type="DatabaseContext.Store.ExerciseTemplateSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ExerciseTemplate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Exercise">
+        <PropertyRef Name="ExerciseTemplateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DatabaseContext" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DatabaseContextContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ExerciseTemplateSet" EntityType="DatabaseContext.ExerciseTemplate" />
+          <EntitySet Name="ExerciseSet" EntityType="DatabaseContext.Exercise" />
+          <AssociationSet Name="ExerciseExerciseTemplate" Association="DatabaseContext.ExerciseExerciseTemplate">
+            <End Role="Exercise" EntitySet="ExerciseSet" />
+            <End Role="ExerciseTemplate" EntitySet="ExerciseTemplateSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ExerciseTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="DefaultSets" Type="Int16" Nullable="false" />
+          <Property Name="DefaultReps" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Exercises" Relationship="DatabaseContext.ExerciseExerciseTemplate" FromRole="ExerciseTemplate" ToRole="Exercise" />
+        </EntityType>
+        <EntityType Name="Exercise">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Sets" Type="Int16" Nullable="false" />
+          <Property Name="Reps" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="ExerciseTemplate" Relationship="DatabaseContext.ExerciseExerciseTemplate" FromRole="Exercise" ToRole="ExerciseTemplate" />
+          <Property Name="ExerciseTemplateId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ExerciseExerciseTemplate">
+          <End Type="DatabaseContext.Exercise" Role="Exercise" Multiplicity="*" />
+          <End Type="DatabaseContext.ExerciseTemplate" Role="ExerciseTemplate" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="ExerciseTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Exercise">
+              <PropertyRef Name="ExerciseTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseContextStoreContainer" CdmEntityContainer="DatabaseContextContainer">
+    <EntitySetMapping Name="ExerciseTemplateSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseContext.ExerciseTemplate)">
+        <MappingFragment StoreEntitySet="ExerciseTemplateSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DefaultSets" ColumnName="DefaultSets" />
+          <ScalarProperty Name="DefaultReps" ColumnName="DefaultReps" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExerciseSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseContext.Exercise)">
+        <MappingFragment StoreEntitySet="ExerciseSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Sets" ColumnName="Sets" />
+          <ScalarProperty Name="Reps" ColumnName="Reps" />
+          <ScalarProperty Name="ExerciseTemplateId" ColumnName="ExerciseTemplateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

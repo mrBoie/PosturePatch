@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PostureRepo
 {
-    class WorkoutBO
+    public class WorkoutBO
     {
         public int ID { get; set; }
         public string Name { get; set; }

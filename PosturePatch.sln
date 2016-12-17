@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PosturePatch.Tests", "Postu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostureRepo", "PostureRepo\PostureRepo.csproj", "{B318BA2B-E60E-40A0-AF12-7E9052F4E84B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\TestConsole.csproj", "{120948F2-588F-4E11-A246-472873E1F2F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B318BA2B-E60E-40A0-AF12-7E9052F4E84B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B318BA2B-E60E-40A0-AF12-7E9052F4E84B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B318BA2B-E60E-40A0-AF12-7E9052F4E84B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{120948F2-588F-4E11-A246-472873E1F2F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{120948F2-588F-4E11-A246-472873E1F2F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{120948F2-588F-4E11-A246-472873E1F2F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{120948F2-588F-4E11-A246-472873E1F2F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

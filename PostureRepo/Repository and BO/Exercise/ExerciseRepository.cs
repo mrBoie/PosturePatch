@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PostureRepo.Repository_and_BO.Exercise
 {
-    interface IExerciseRepository
+    class ExerciseRepository
     {
     }
 }

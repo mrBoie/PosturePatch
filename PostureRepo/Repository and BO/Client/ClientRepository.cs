@@ -5,34 +5,66 @@ using System.Text;
 using System.Threading.Tasks;
 using PostureRepo.Repository.Interfaces;
 using System.Data.Entity;
+//using PostureRepo.Repository_and_BO.Client;
 
-namespace PostureRepo.Repositories.Models
-{
-    class ClientRepository : DbContext, IClientRepository
-    {
-        public bool CreateClient(ClientBO clientToCreate)
-        {
-            throw new NotImplementedException();
-        }
+//namespace PostureRepo.Repositories.Models
+//{
+//    class ClientRepository : DbContext, IClientRepository
+//    {
+//        public ClientRepository()
+//        {
 
-        public IEnumerable<ClientBO> GetAllClients()
-        {
-            throw new NotImplementedException();
-        }
+//        }
 
-        public ClientBO GetClientByID(int id)
-        {
-            throw new NotImplementedException();
-        }
+//        public bool CreateClient(ClientBO clientToCreate)
+//        {
+//            using (var db = new DatabaseContext())
+//            {
+//                db.Clients.Add(clientToCreate);
+//                db.SaveChanges();
+//            }
+//            return true;
+//        }
 
-        public bool RemoveClient(ClientBO clientToRemove)
-        {
-            throw new NotImplementedException();
-        }
+//        public IEnumerable<ClientBO> GetAllClients()
+//        {
+//            using (var db = new DatabaseContext())
+//            {
+//                return db.Clients.ToList();
+//            }
+//        }
 
-        public ClientBO UpdateClient(int id, ClientBO clientToUpdate)
-        {
-            throw new NotImplementedException();
-        }
-    }
-}
+//        public ClientBO GetClientByID(int id)
+//        {
+//            using (var db = new DatabaseContext())
+//            {
+//                return db.Clients.FirstOrDefault(client => client.ID == id);
+//            }
+//        }
+
+//        public bool RemoveClient(ClientBO clientToRemove)
+//        {
+//            using (var db = new DatabaseContext())
+//            {
+//                var client = db.Clients.FirstOrDefault(c => c.ID == clientToRemove.ID);
+//                if (client == null)
+//                    return false;
+
+//                db.Clients.Remove(client);
+//                db.SaveChanges();
+//                return true;
+//            }
+//        }
+
+//        public ClientBO UpdateClient(int id, ClientBO clientToUpdate)
+//        {
+//            using (var db = new DatabaseContext())
+//            {
+//                var client = db.Clients.FirstOrDefault(c => c.ID == clientToUpdate.ID);
+
+//                if (client == null)
+//                    return null;
+//            }
+//        }
+//    }
+//}
