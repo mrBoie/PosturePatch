@@ -17,16 +17,16 @@ namespace PostureRepo.Repository_and_BO.dbContext
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Client()
         {
-            this.Workouts = new HashSet<Workout>();
+            this.Workout = new HashSet<Workout>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public short Age { get; set; }
+        public System.DateTime DateOfBirth { get; set; }
         public short Gender { get; set; }
         public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Workout> Workouts { get; set; }
+        public virtual ICollection<Workout> Workout { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace PostureRepo.Repository_and_BO
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public int Age { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public Enums.Gender Gender { get; set; }
         public string Description { get; set; }
         public List<WorkoutBO> Workouts { get; set; }

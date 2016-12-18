@@ -45,5 +45,17 @@ namespace PostureRepo.Repository_and_BO
                 DateCreated = entity.DateCreated
             };
         }
+
+        public static ClientBO toBO(this Client entity)
+        {
+            return new ClientBO
+            {
+                ID = entity.Id,
+                Name = entity.Name,
+                Description = entity.Description,
+                DateOfBirth = entity.DateOfBirth,
+                Gender = (Enums.Gender)entity.Gender,
+            };
+        }
     }
 }

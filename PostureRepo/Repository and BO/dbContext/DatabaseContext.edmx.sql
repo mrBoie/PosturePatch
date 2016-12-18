@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/18/2016 11:37:33
+-- Date Created: 12/18/2016 22:25:18
 -- Generated from EDMX file: C:\Users\Montret\documents\visual studio 2015\Projects\PosturePatch\PostureRepo\Repository and BO\dbContext\DatabaseContext.edmx
 -- --------------------------------------------------
 
@@ -76,7 +76,7 @@ CREATE TABLE [dbo].[WorkoutSet] (
     [Name] nvarchar(max)  NOT NULL,
     [DateCreated] datetime  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
-    [Client_Id] int  NOT NULL
+    [ClientId] int  NOT NULL
 );
 GO
 
@@ -84,7 +84,7 @@ GO
 CREATE TABLE [dbo].[ClientSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [Age] smallint  NOT NULL,
+    [DateOfBirth] datetime  NOT NULL,
     [Gender] smallint  NOT NULL,
     [Description] nvarchar(max)  NOT NULL
 );
@@ -152,19 +152,19 @@ ON [dbo].[ExerciseSet]
     ([WorkoutId]);
 GO
 
--- Creating foreign key on [Client_Id] in table 'WorkoutSet'
+-- Creating foreign key on [ClientId] in table 'WorkoutSet'
 ALTER TABLE [dbo].[WorkoutSet]
-ADD CONSTRAINT [FK_ClientWorkout]
-    FOREIGN KEY ([Client_Id])
+ADD CONSTRAINT [FK_WorkoutClient]
+    FOREIGN KEY ([ClientId])
     REFERENCES [dbo].[ClientSet]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_ClientWorkout'
-CREATE INDEX [IX_FK_ClientWorkout]
+-- Creating non-clustered index for FOREIGN KEY 'FK_WorkoutClient'
+CREATE INDEX [IX_FK_WorkoutClient]
 ON [dbo].[WorkoutSet]
-    ([Client_Id]);
+    ([ClientId]);
 GO
 
 -- --------------------------------------------------

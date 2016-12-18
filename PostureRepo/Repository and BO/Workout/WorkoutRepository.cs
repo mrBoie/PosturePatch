@@ -49,22 +49,42 @@ namespace PostureRepo.Repository_and_BO
             }
         }
 
-        public IEnumerable<WorkoutBO> GetAllWorkoutsByClient(ClientBO client)
+        public IEnumerable<WorkoutBO> GetAllWorkoutsByClientID(int clientid)
         {
             using (var db = new DatabaseContextContainer())
             {
-                return db.WorkoutSet.Where(o => o. == client.ID).Select(w => w.toBO()).ToList();
+                return db.WorkoutSet.Where(o => o.ClientId == clientid).Select(w => w.toBO()).ToList();
             }
         }
 
         public WorkoutBO GetWorkoutByID(int id)
         {
-            throw new NotImplementedException();
+            using (var db = new DatabaseContextContainer())
+            {
+                return db.WorkoutSet.FirstOrDefault(o => o.Id == id).toBO();
+            }
         }
 
-        public bool UpdateWorkout(WorkoutBO workout)
+        public bool UpdateWorkout(int id, WorkoutBO workout)
         {
-            throw new NotImplementedException();
+            using (var db = new DatabaseContextContainer())
+            {
+                var WorkoutEntity = db.WorkoutSet.FirstOrDefault(o => o.Id == id);
+                if (WorkoutEntity == null)
+                    return false;
+
+                if (workout.Name != null)
+                    WorkoutEntity.Name = workout.Name;
+                if (workout.Description != null)
+                    WorkoutEntity.Description = workout.Description;
+                if (workout.ClientID != 0)
+                    WorkoutEntity.ClientId = workout.ClientID;
+                if (workout.DateCreated != null)
+                    WorkoutEntity.DateCreated = workout.DateCreated;
+
+                db.SaveChanges();
+                return true;
+            }
         }
     }
 }

@@ -24,6 +24,7 @@ namespace PostureRepo.Repository_and_BO.dbContext
         public string Name { get; set; }
         public System.DateTime DateCreated { get; set; }
         public string Description { get; set; }
+        public int ClientId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Exercise> Exercises { get; set; }

@@ -12,6 +12,8 @@ namespace PostureRepo.Repository_and_BO
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }
+        public int ClientID { get; set; }
+        public List<ClientBO> Clients { get; set; }
         public List<ExerciseBO> Excercises{ get; set; }
     }
 }

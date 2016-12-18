@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="DatabaseContext.Workout" Width="1.5" PointX="7.625" PointY="3.25" />
         <AssociationConnector Association="DatabaseContext.WorkoutExercise" />
         <EntityTypeShape EntityType="DatabaseContext.Client" Width="1.5" PointX="5.125" PointY="0.5" />
-        <AssociationConnector Association="DatabaseContext.ClientWorkout" />
+        <AssociationConnector Association="DatabaseContext.WorkoutClient" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
