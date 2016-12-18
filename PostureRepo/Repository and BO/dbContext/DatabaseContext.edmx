@@ -8,9 +8,19 @@
   <EntityContainer Name="DatabaseContextStoreContainer">
     <EntitySet Name="ExerciseTemplateSet" EntityType="DatabaseContext.Store.ExerciseTemplateSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ExerciseSet" EntityType="DatabaseContext.Store.ExerciseSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WorkoutSet" EntityType="DatabaseContext.Store.WorkoutSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClientSet" EntityType="DatabaseContext.Store.ClientSet" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="ExerciseExerciseTemplate" Association="DatabaseContext.Store.ExerciseExerciseTemplate">
       <End Role="Exercise" EntitySet="ExerciseSet" />
       <End Role="ExerciseTemplate" EntitySet="ExerciseTemplateSet" />
+    </AssociationSet>
+    <AssociationSet Name="WorkoutExercise" Association="DatabaseContext.Store.WorkoutExercise">
+      <End Role="Workout" EntitySet="WorkoutSet" />
+      <End Role="Exercise" EntitySet="ExerciseSet" />
+    </AssociationSet>
+    <AssociationSet Name="ClientWorkout" Association="DatabaseContext.Store.ClientWorkout">
+      <End Role="Client" EntitySet="ClientSet" />
+      <End Role="Workout" EntitySet="WorkoutSet" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="ExerciseTemplateSet">
@@ -33,6 +43,27 @@
     <Property Name="Sets" Type="smallint" Nullable="false" />
     <Property Name="Reps" Type="smallint" Nullable="false" />
     <Property Name="ExerciseTemplateId" Type="int" Nullable="false" />
+    <Property Name="WorkoutId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WorkoutSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Client_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClientSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Age" Type="smallint" Nullable="false" />
+    <Property Name="Gender" Type="smallint" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="ExerciseExerciseTemplate">
     <End Role="Exercise" Type="DatabaseContext.Store.ExerciseSet" Multiplicity="*" />
@@ -46,6 +77,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="WorkoutExercise">
+    <End Role="Workout" Type="DatabaseContext.Store.WorkoutSet" Multiplicity="1" />
+    <End Role="Exercise" Type="DatabaseContext.Store.ExerciseSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workout">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Exercise">
+        <PropertyRef Name="WorkoutId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClientWorkout">
+    <End Role="Client" Type="DatabaseContext.Store.ClientSet" Multiplicity="1" />
+    <End Role="Workout" Type="DatabaseContext.Store.WorkoutSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Workout">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -56,6 +111,16 @@
           <AssociationSet Name="ExerciseExerciseTemplate" Association="DatabaseContext.ExerciseExerciseTemplate">
             <End Role="Exercise" EntitySet="ExerciseSet" />
             <End Role="ExerciseTemplate" EntitySet="ExerciseTemplateSet" />
+          </AssociationSet>
+          <EntitySet Name="WorkoutSet" EntityType="DatabaseContext.Workout" />
+          <AssociationSet Name="WorkoutExercise" Association="DatabaseContext.WorkoutExercise">
+            <End Role="Workout" EntitySet="WorkoutSet" />
+            <End Role="Exercise" EntitySet="ExerciseSet" />
+          </AssociationSet>
+          <EntitySet Name="ClientSet" EntityType="DatabaseContext.Client" />
+          <AssociationSet Name="ClientWorkout" Association="DatabaseContext.ClientWorkout">
+            <End Role="Client" EntitySet="ClientSet" />
+            <End Role="Workout" EntitySet="WorkoutSet" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="ExerciseTemplate">
@@ -80,6 +145,8 @@
           <Property Name="Reps" Type="Int16" Nullable="false" />
           <NavigationProperty Name="ExerciseTemplate" Relationship="DatabaseContext.ExerciseExerciseTemplate" FromRole="Exercise" ToRole="ExerciseTemplate" />
           <Property Name="ExerciseTemplateId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Workout" Relationship="DatabaseContext.WorkoutExercise" FromRole="Exercise" ToRole="Workout" />
+          <Property Name="WorkoutId" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="ExerciseExerciseTemplate">
           <End Type="DatabaseContext.Exercise" Role="Exercise" Multiplicity="*" />
@@ -92,6 +159,44 @@
               <PropertyRef Name="ExerciseTemplateId" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Workout">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Exercises" Relationship="DatabaseContext.WorkoutExercise" FromRole="Workout" ToRole="Exercise" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="DatabaseContext.ClientWorkout" FromRole="Workout" ToRole="Client" />
+        </EntityType>
+        <Association Name="WorkoutExercise">
+          <End Type="DatabaseContext.Workout" Role="Workout" Multiplicity="1" />
+          <End Type="DatabaseContext.Exercise" Role="Exercise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workout">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Exercise">
+              <PropertyRef Name="WorkoutId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Age" Type="Int16" Nullable="false" />
+          <Property Name="Gender" Type="Int16" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <NavigationProperty Name="Workouts" Relationship="DatabaseContext.ClientWorkout" FromRole="Client" ToRole="Workout" />
+        </EntityType>
+        <Association Name="ClientWorkout">
+          <End Type="DatabaseContext.Client" Role="Client" Multiplicity="1" />
+          <End Type="DatabaseContext.Workout" Role="Workout" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -119,9 +224,39 @@
           <ScalarProperty Name="Sets" ColumnName="Sets" />
           <ScalarProperty Name="Reps" ColumnName="Reps" />
           <ScalarProperty Name="ExerciseTemplateId" ColumnName="ExerciseTemplateId" />
+          <ScalarProperty Name="WorkoutId" ColumnName="WorkoutId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="WorkoutSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseContext.Workout)">
+        <MappingFragment StoreEntitySet="WorkoutSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClientSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseContext.Client)">
+        <MappingFragment StoreEntitySet="ClientSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ClientWorkout" TypeName="DatabaseContext.ClientWorkout" StoreEntitySet="WorkoutSet">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="Workout">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

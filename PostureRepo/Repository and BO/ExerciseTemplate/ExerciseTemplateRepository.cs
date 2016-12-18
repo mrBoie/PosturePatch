@@ -7,7 +7,7 @@ using PostureRepo.Repository_and_BO.dbContext;
 using SqlProviderServices = System.Data.Entity.SqlServer.SqlProviderServices;
 using PostureRepo;
 
-namespace PostureRepo.Repository_and_BO.Exercise
+namespace PostureRepo.Repository_and_BO
 {
     public class ExerciseTemplateRepository : IExerciseTemplateRepository
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PostureRepo.Repository.Interfaces
+namespace PostureRepo.Repository_and_BO
 {
     interface IClientRepository
     {

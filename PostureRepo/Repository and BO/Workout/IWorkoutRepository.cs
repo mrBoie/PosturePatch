@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PostureRepo.Repository.Interfaces
+namespace PostureRepo.Repository_and_BO
 {
-    interface IWorkoutRepository
+    public interface IWorkoutRepository
     {
         IEnumerable<WorkoutBO> GetAllWorkouts();
         IEnumerable<WorkoutBO> GetAllWorkoutsByClient(ClientBO client);
         WorkoutBO GetWorkoutByID(int id);
-        bool CreateWorkout(WorkoutBO workout);
+        WorkoutBO CreateWorkout(WorkoutBO workout);
         bool DeleteWorkout(WorkoutBO workout);
         bool UpdateWorkout(WorkoutBO workout);
     }

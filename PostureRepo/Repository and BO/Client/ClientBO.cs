@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PostureRepo
+namespace PostureRepo.Repository_and_BO
 {
     public class ClientBO
     {

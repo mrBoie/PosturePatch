@@ -72,6 +72,9 @@
   <ItemGroup>
     <Compile Include="Extensions.cs" />
     <Compile Include="Repository and BO\Client\ClientBO.cs" />
+    <Compile Include="Repository and BO\dbContext\Client.cs">
+      <DependentUpon>DatabaseContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Repository and BO\dbContext\DatabaseContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -93,6 +96,9 @@
     <Compile Include="Repository and BO\dbContext\ExerciseTemplate.cs">
       <DependentUpon>DatabaseContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repository and BO\dbContext\Workout.cs">
+      <DependentUpon>DatabaseContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Repository and BO\Exercise\ExerciseBO.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,6 +113,7 @@
     <Compile Include="Repository and BO\Session\ISessionRepository.cs" />
     <Compile Include="Repository and BO\Workout\IWorkoutRepository.cs" />
     <Compile Include="Repository and BO\Client\ClientRepository.cs" />
+    <Compile Include="Repository and BO\Workout\WorkoutRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -117,6 +124,7 @@
     </EntityDeploy>
     <None Include="Repository and BO\dbContext\DatabaseContext.edmx.diagram">
       <DependentUpon>DatabaseContext.edmx</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>

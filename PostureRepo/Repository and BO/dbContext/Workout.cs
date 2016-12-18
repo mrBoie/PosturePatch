@@ -12,17 +12,21 @@ namespace PostureRepo.Repository_and_BO.dbContext
     using System;
     using System.Collections.Generic;
     
-    public partial class Exercise
+    public partial class Workout
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Workout()
+        {
+            this.Exercises = new HashSet<Exercise>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
+        public System.DateTime DateCreated { get; set; }
         public string Description { get; set; }
-        public short Sets { get; set; }
-        public short Reps { get; set; }
-        public int ExerciseTemplateId { get; set; }
-        public int WorkoutId { get; set; }
     
-        public virtual ExerciseTemplate ExerciseTemplate { get; set; }
-        public virtual Workout Workout { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Exercise> Exercises { get; set; }
+        public virtual Client Client { get; set; }
     }
 }

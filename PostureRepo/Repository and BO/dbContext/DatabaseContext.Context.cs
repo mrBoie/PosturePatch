@@ -27,5 +27,7 @@ namespace PostureRepo.Repository_and_BO.dbContext
     
         public virtual DbSet<ExerciseTemplate> ExerciseTemplateSet { get; set; }
         public virtual DbSet<Exercise> ExerciseSet { get; set; }
+        public virtual DbSet<Workout> WorkoutSet { get; set; }
+        public virtual DbSet<Client> ClientSet { get; set; }
     }
 }
