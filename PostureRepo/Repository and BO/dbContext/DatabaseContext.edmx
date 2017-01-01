@@ -147,6 +147,7 @@
           <Property Name="ExerciseTemplateId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Workout" Relationship="DatabaseContext.WorkoutExercise" FromRole="Exercise" ToRole="Workout" />
           <Property Name="WorkoutId" Type="Int32" Nullable="false" />
+          <Property Name="SortOrder" Type="Int16" Nullable="false" />
         </EntityType>
         <Association Name="ExerciseExerciseTemplate">
           <End Type="DatabaseContext.Exercise" Role="Exercise" Multiplicity="*" />

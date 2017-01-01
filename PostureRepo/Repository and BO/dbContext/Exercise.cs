@@ -21,6 +21,7 @@ namespace PostureRepo.Repository_and_BO.dbContext
         public short Reps { get; set; }
         public int ExerciseTemplateId { get; set; }
         public int WorkoutId { get; set; }
+        public short SortOrder { get; set; }
     
         public virtual ExerciseTemplate ExerciseTemplate { get; set; }
         public virtual Workout Workout { get; set; }

@@ -100,6 +100,8 @@ namespace PostureRepo.Repository_and_BO
                     exerciseEntity.ExerciseTemplateId = exercise.TemplateID;
                 if (exercise.WorkoutID != 0)
                     exerciseEntity.WorkoutId = exercise.WorkoutID;
+                if (exercise.Order != 0)
+                    exerciseEntity.Order = exercise.Order;
 
                 db.SaveChanges();
 

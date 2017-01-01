@@ -114,6 +114,9 @@
     <Compile Include="Repository and BO\Workout\IWorkoutRepository.cs" />
     <Compile Include="Repository and BO\Client\ClientRepository.cs" />
     <Compile Include="Repository and BO\Workout\WorkoutRepository.cs" />
+    <Compile Include="Services\IExerciseService.cs" />
+    <Compile Include="Services\IWorkoutService.cs" />
+    <Compile Include="Services\WorkoutService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -127,9 +130,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

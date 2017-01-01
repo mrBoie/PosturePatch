@@ -15,5 +15,6 @@ namespace PostureRepo.Repository_and_BO
         public short Reps { get; set; }
         public int TemplateID { get; set; }
         public int WorkoutID { get; set; }
+        public short Order { get; set; }
     }
 }
