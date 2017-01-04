@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/18/2016 22:25:18
--- Generated from EDMX file: C:\Users\Montret\documents\visual studio 2015\Projects\PosturePatch\PostureRepo\Repository and BO\dbContext\DatabaseContext.edmx
+-- Date Created: 01/01/2017 17:52:08
+-- Generated from EDMX file: C:\Users\Montret\Documents\Visual Studio 2015\Projects\PosturePatch\PostureRepo\Repository and BO\dbContext\DatabaseContext.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -23,8 +23,8 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_WorkoutExercise]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ExerciseSet] DROP CONSTRAINT [FK_WorkoutExercise];
 GO
-IF OBJECT_ID(N'[dbo].[FK_ClientWorkout]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[WorkoutSet] DROP CONSTRAINT [FK_ClientWorkout];
+IF OBJECT_ID(N'[dbo].[FK_WorkoutClient]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WorkoutSet] DROP CONSTRAINT [FK_WorkoutClient];
 GO
 
 -- --------------------------------------------------
@@ -66,7 +66,8 @@ CREATE TABLE [dbo].[ExerciseSet] (
     [Sets] smallint  NOT NULL,
     [Reps] smallint  NOT NULL,
     [ExerciseTemplateId] int  NOT NULL,
-    [WorkoutId] int  NOT NULL
+    [WorkoutId] int  NOT NULL,
+    [SortOrder] smallint  NOT NULL
 );
 GO
 

@@ -44,6 +44,7 @@
     <Property Name="Reps" Type="smallint" Nullable="false" />
     <Property Name="ExerciseTemplateId" Type="int" Nullable="false" />
     <Property Name="WorkoutId" Type="int" Nullable="false" />
+    <Property Name="SortOrder" Type="smallint" Nullable="false" />
   </EntityType>
   <EntityType Name="WorkoutSet">
     <Key>
@@ -235,6 +236,7 @@
           <ScalarProperty Name="Reps" ColumnName="Reps" />
           <ScalarProperty Name="ExerciseTemplateId" ColumnName="ExerciseTemplateId" />
           <ScalarProperty Name="WorkoutId" ColumnName="WorkoutId" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
